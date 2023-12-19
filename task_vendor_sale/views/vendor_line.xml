@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="sale_inherit_form_view" model="ir.ui.view">
+        <field name="name">sale.amount.inherit.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="create_vendor_bill" string="Create Vendor Bills" type="object" attrs="{'invisible': ['|',('state', '!=', 'sale'),('is_vendor_bill_created', '=', True)]}"  class="btn-primary"/>
+                 <field name="is_vendor_bill_created" invisible="1"/>
+            </header>
+
+             <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_template_id']" position="before">
+               <field name="vendors_id" />
+           </xpath>
+            <xpath expr="//button[@name='action_view_delivery']" position="after">
+                <button name="action_vendor_bill"
+                        type="object"
+                        class="oe_stat_button"
+                        attrs="{'invisible': [('state', '!=', 'sale')]}"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text"><b>Vendor</b></span>
+                        <span class="o_stat_text"><b>Bills</b></span>
+                    </div>
+                    <field name="vendor_bill_count"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

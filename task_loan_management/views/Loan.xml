@@ -1,0 +1,66 @@
+<odoo>
+    <!-- tree view of Loan Management  -->
+    <record id="view_loan_management_tree" model="ir.ui.view">
+        <field name="name">loan.management.tree</field>
+        <field name="model">loan.manage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee" string="Name"/>
+                <field name="amount" string="Amount"/>
+                <field name="installments" string="Installment"/>
+            </tree>
+        </field>
+    </record>
+    <!-- form view of loan management-->
+    <record id="view_loan_management_form" model="ir.ui.view">
+        <field name="name">loan.management.form</field>
+        <field name="model">loan.manage</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Approve"  states="draft" class="oe_highlight" type="object" name="action_loan"
+                        attrs="{'invisible': [('is_approved', '=', True)]}"
+                    />
+                    <button string="Reset"  states="done" class="oe_highlight" type="object" name="action_reset"
+                        attrs="{'invisible': [('is_approved', '=', False)]}"
+                    />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="employee" string="Employee"/>
+                        <field name="amount" string="Amount"/>
+                        <field name="date" string="Date"/>
+                        <field name="installments" string="Installment"/>
+                        <!-- Add the 'is_approved' field if it's necessary -->
+                        <field name="is_approved" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Installments">
+                            <field name="loan_ids" widget="one2many_list" >
+                                <tree editable="bottom"  create="false" delete="0">
+                                    <field name="date_line" readonly="1"/>
+                                    <field name="amount_line" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_loan" model="ir.actions.act_window">
+        <field name="name">Loan List</field>
+        <field name="res_model">loan.manage</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem
+        id="Loan_manage"
+        name="Loan list"
+        parent="Loan_menu"
+        action="action_loan"
+        sequence="1"
+    />
+</odoo>

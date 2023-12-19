@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+            id="Loan_menu"
+            name="Loan Management"
+            sequence="9"
+    />
+
+
+</odoo>

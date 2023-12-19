@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_loan_manage,access.loan.manage,task_loan_management.model_loan_manage,,1,1,1,1
+access_loan_line,access.loan.line,task_loan_management.model_loan_line,,1,1,1,1

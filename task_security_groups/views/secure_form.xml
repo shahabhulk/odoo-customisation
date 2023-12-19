@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- tree view of secure group   -->
+    <record id="view_secure_group_tree" model="ir.ui.view">
+        <field name="name">secure.group.tree</field>
+        <field name="model">secure.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" string="Sequence"/>
+                <field name="name" string="Name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_name_record_form" model="ir.ui.view">
+        <field name="name">name.record.form</field>
+        <field name="model">secure.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="secure_create" string="Create" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" string="Name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_name" model="ir.actions.act_window">
+        <field name="name">Name</field>
+        <field name="res_model">secure.group</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem
+            id="name_records"
+            name="Name record"
+            parent="secure_me"
+            action="action_name"
+            sequence="1"
+    />
+    <record id="sequence_secure_group" model="ir.sequence">
+        <field name="name">Secure Group Sequence</field>
+        <field name="code">secure.group.sequence</field>
+        <field name="prefix">SG-</field> <!-- Prefix for the sequence -->
+        <field name="padding">5</field> <!-- Padding for the sequence, e.g., SG-00001 -->
+    </record>
+</odoo>

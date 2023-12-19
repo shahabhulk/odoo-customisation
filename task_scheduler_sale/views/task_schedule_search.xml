@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="filter_sale" model="ir.ui.view">
+        <field name="name">filter.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_quotation']" position="attributes">
+                <attribute name="string">Above 500</attribute>
+                <attribute name="domain">[('ticker','=',True)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+
+
+

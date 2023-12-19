@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="module_category_security">
+        <field name="name">Security Management</field>
+        <field name="description">security</field>
+        <field name="sequence">8</field>
+
+    </record>
+
+
+    <!-- Manager Group -->
+    <record id="group_custom_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_security"/>
+        <!--        <field name="is_manager_group">True</field>-->
+    </record>
+
+    <!-- User Group -->
+    <record id="group_custom_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_security"/>
+        <!--        <field name="is_manager_group">False</field>-->
+    </record>
+
+    <record id="record_rule_manager" model="ir.rule">
+        <field name="name">Manager Access</field>
+        <field name="model_id" ref="model_secure_group"/>
+        <field name="domain_force">[]</field> <!-- Empty domain means they can access all records -->
+        <field name="groups" eval="[(4, ref('group_custom_manager'))]"/>
+    </record>
+
+    <record id="record_rule_user" model="ir.rule">
+        <field name="name">User Access</field>
+        <field name="model_id" ref="model_secure_group"/>
+        <field name="domain_force">[('name', '=', user.name)]
+        </field> <!-- Assuming 'user_id' field associates records with users -->
+        <field name="groups" eval="[(4, ref('group_custom_user'))]"/>
+    </record>
+
+</odoo>

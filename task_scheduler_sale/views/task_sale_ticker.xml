@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    customization for the sale form view-->
+    <record id="sale_inherit_form_view" model="ir.ui.view">
+        <field name="name">sale.amount.inherit.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="amount" string="Amount" groups="task_scheduler_sale.group_sale_amount_visible"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- Customization for the sale.order tree view -->
+    <record id="sale_inherit_tree_view" model="ir.ui.view">
+        <field name="name">sale.amount.inherit.tree.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="ticker"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_inherit_form_view" model="ir.ui.view">
+        <field name="name">hr.amount.inherit.form.view</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='contract_id']" position="after">
+                <field name="overtime_pay" string="Extra Hours"/>
+            </xpath>
+            <xpath expr="//field[@name='contract_id']" position="before">
+                <field name="extra" string="Extra charges"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='line_ids']/tree/field[@name='salary_rule_id']" position="after">
+               <field name="extra_hours" />
+           </xpath>
+
+        </field>
+    </record>
+</odoo>
