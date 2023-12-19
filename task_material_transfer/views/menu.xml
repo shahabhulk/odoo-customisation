@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+            id="transfer_menu"
+            name="Material transfer"
+            sequence="9"
+    />
+<!--    <menuitem-->
+<!--            id="transfer"-->
+<!--            name="Transfer"-->
+<!--            parent="transfer_menu"-->
+<!--            sequence="9"-->
+<!--    />-->
+
+
+</odoo>
