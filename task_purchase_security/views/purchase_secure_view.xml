@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="purchase_inherit_tree_view" model="ir.ui.view">
+            <field name="name">purchase.inherit.form.view</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                </xpath>
+            </field>
+        </record>
+    <!-- Inheriting the Purchase Order Form View -->
+    <record id="purchase_inherit_form_view" model="ir.ui.view">
+        <field name="name">purchase.inherit.form.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//form" position="attributes">
+                    <attribute name="create">false</attribute>
+                    <attribute name="edit">false</attribute>
+                </xpath>
+
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="employee_id" string="Employee"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Overriding the Purchase Menu Item -->
+    <menuitem name="Purchase"
+              id="purchase.menu_purchase_root"
+              groups="group_employee_own_purchase,group_restrict_po"/>
+
+
+</odoo>
