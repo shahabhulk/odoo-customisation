@@ -1,1 +1,0 @@
-from .import auto_vendor_purchase

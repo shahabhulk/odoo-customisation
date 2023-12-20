@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_vendor_bill,access.vendor.bill,task_vendor_sale.model_vendor_bill,,1,1,1,1
-
