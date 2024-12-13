@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-esc='props.product.display_name']" position="after">
+            <br/>
+            <span style="font-size: 10px;">Owner: <t t-esc='props.product.product_owner[1]'/></span>
+        </xpath>
+    </t>
+
+</templates>
+
+
