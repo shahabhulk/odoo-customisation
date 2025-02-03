@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_weather_form" model="ir.ui.view">
+        <field name="name">weather.city.form</field>
+        <field name="model">weather.city</field>
+        <field name="arch" type="xml">
+            <form string="Weather Information">
+                <header>
+                    <button name="update_weather" type="object" string="Fetch Weather" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="temperature" readonly="1"/>
+                        <field name="weather_description" readonly="1"/>
+                        <field name="last_updated" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_weather" model="ir.actions.act_window">
+        <field name="name">Weather Data</field>
+        <field name="res_model">weather.city</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="weather_menu" name="Weather App"/>
+    <menuitem id="weather_city_menu" name="Weather Data" parent="weather_menu" action="action_weather"/>
+</odoo>
