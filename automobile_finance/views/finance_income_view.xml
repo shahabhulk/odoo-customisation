@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Income Tree View -->
+    <record id="view_income_tree" model="ir.ui.view">
+        <field name="name">automobile.finance.income.tree</field>
+        <field name="model">automobile.finance.income</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence_income"/>
+                <field name="customer_name_id"/>
+                <field name="date"/>
+                <field name="total_amount"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Income Form View -->
+    <record id="view_income_form" model="ir.ui.view">
+        <field name="name">automobile.finance.income.form</field>
+        <field name="model">automobile.finance.income</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="customer_name_id"/>
+                            <field name="date"/>
+                            <field name="total_amount"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Income Details">
+                            <field name="income_line_ids" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="category_id"/>
+                                    <field name="description"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_finance_income" model="ir.actions.act_window">
+        <field name="name">Income Data</field>
+        <field name="res_model">automobile.finance.income</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="finance_menu" name="Automobile Finance"/>
+    <menuitem id="finance_income_menu" name="Income" parent="finance_menu" action="action_finance_income"/>
+    <!--    <menuitem id="finance_expense_menu" name="Expense" parent="finance_menu" action="action_finance_expense"/>-->
+
+</odoo>
